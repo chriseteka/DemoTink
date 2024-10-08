@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @UtilityClass
 final class AuthorizationPayloads {
 
-    final static OAuthAuthorizationScope USER_AUTHORIZATION_GRANT_SCOPE = () -> "authorization:grant";
+    static final OAuthAuthorizationScope USER_AUTHORIZATION_GRANT_SCOPE = () -> "authorization:grant";
 
     interface AuthorizationResponse {
         String accessToken();
@@ -23,8 +23,8 @@ final class AuthorizationPayloads {
         }
     }
 
-    record ClientAuthorizationResponse(
-            String accessToken, String tokenType, String scope, LocalDateTime expiresAt) implements AuthorizationResponse {
+    record ClientAuthorizationResponse(String accessToken, String tokenType, String scope,
+                                       LocalDateTime expiresAt) implements AuthorizationResponse {
 
         @JsonCreator
         ClientAuthorizationResponse(
@@ -35,8 +35,8 @@ final class AuthorizationPayloads {
     }
 
     //How to use the refresh token
-    record UserAuthorizationResponse(
-            String accessToken, String refreshToken, String tokenType, String scope, LocalDateTime expiresAt) implements AuthorizationResponse {
+    record UserAuthorizationResponse(String accessToken, String refreshToken, String tokenType,
+                                     String scope, LocalDateTime expiresAt) implements AuthorizationResponse {
 
         @JsonCreator
         UserAuthorizationResponse(

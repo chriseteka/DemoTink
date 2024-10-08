@@ -27,14 +27,14 @@ final class AuthorizationService {
     private final AppConfigProperties.TinkConfig tinkConfig;
 
     AuthorizationService(TokenStore tokenStore, @Qualifier("tinkHttpClient") RestClient httpClient,
-                                AppConfigProperties appConfigProperties) {
+                         AppConfigProperties appConfigProperties) {
         this.tokenStore = tokenStore;
         this.httpClient = httpClient;
         this.tinkConfig = appConfigProperties.getTinkConfig();
     }
 
     @EventListener
-    public <T extends OAuthAuthorizationScope> String authorizeClient(T eventWithScope) {
+    <T extends OAuthAuthorizationScope> String authorizeClient(T eventWithScope) {
 
         if (tokenStore.clientAuthTokenDoesNotExistsOrIsExpired(eventWithScope)) {
 
@@ -53,7 +53,7 @@ final class AuthorizationService {
     }
 
     @EventListener
-    public void userAuthorizationGrant(AppEvents.UserAuthorizationGrantEvent userAuthorizationGrantEvent) {
+    void userAuthorizationGrant(AppEvents.UserAuthorizationGrantEvent userAuthorizationGrantEvent) {
 
         final UserDetails userDetails = userAuthorizationGrantEvent.userDetails();
         final Supplier<AuthorizationGrantCode> authorizationGrantCodeSupplier =

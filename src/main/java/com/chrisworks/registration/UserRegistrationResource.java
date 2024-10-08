@@ -33,7 +33,7 @@ final class UserRegistrationResource {
     }
 
     @PatchMapping("/registrations/{userId}/register-external-account")
-    URI registrationExternalAccount(@PathVariable(name = "userId") String userId) {
+    URI registerExternalAccount(@PathVariable(name = "userId") String userId) {
         return userRegistrationService.registerExternalAccount(userId);
     }
 }

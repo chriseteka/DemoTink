@@ -9,7 +9,7 @@ import java.util.UUID;
 @UtilityClass
 final class UserRegistrationPayloads {
 
-    final static OAuthAuthorizationScope USER_REGISTRATION_AUTHORIZATION_SCOPE = () -> "user:create";
+    static final OAuthAuthorizationScope USER_REGISTRATION_AUTHORIZATION_SCOPE = () -> "user:create";
 
     public record UserRegistrationRequest(@JsonProperty("external_user_id") String id, String market, String locale) {
 

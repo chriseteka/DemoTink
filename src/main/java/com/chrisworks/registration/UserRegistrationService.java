@@ -59,6 +59,8 @@ final class UserRegistrationService implements UserDetailsRetriever {
                 .retrieve()
                 .body(UserRegistrationResponse.class);
 
+        assert userRegistrationResponse != null;
+
         //Add user to registration list
         addRegistration(userRegistrationResponse, registrationRequest);
 
@@ -99,7 +101,7 @@ final class UserRegistrationService implements UserDetailsRetriever {
         userRegistrations.put(userRegistrationResponse, registrationRequest);
         try {
             var output = new BufferedWriter(new FileWriter(fsDBPath, true));
-            output.write("\n%s, %s".formatted(userRegistrationResponse.toCSVLine(), registrationRequest.toCSVLine()));
+            output.write("%n%s, %s".formatted(userRegistrationResponse.toCSVLine(), registrationRequest.toCSVLine()));
             output.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
