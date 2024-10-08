@@ -1,0 +1,9 @@
+server:
+  port: 2211
+
+app-config:
+  fs-db-store-full-path: ${FILE_SYSTEM_DB_PATH:/Users/chriseteka/Documents/progs/DemoTink/data/user-registrations.csv} #Please put the full path to the data folder in your machine
+  tink-config:
+    base-url: https://api.tink.com/
+    client-id: ${TINK_CLIENT_ID}
+    client-secret: ${TINK_CLIENT_SECRET}
